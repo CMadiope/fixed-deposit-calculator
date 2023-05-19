@@ -1,45 +1,33 @@
-import React from 'react'
+import React from "react";
+import Input from "./Input";
 
-const Amount = ({amount,setAmount}) => {
+const Amount = ({ amount, setAmount }) => {
   return (
-    <div className='pt-8'>
-      {/* <h3 className='font-merriweather text-center pb-4 text-4xl text-[#ed0025] font-bold'>
-        R{amount}
-      </h3> */}
-      <div className='flex  pb-4 text-4xl pl-[40%] md:text-5xl lg:text-7xl'>
-        <label
-          className='text-center text-[#ed0025] font-merriweather font-bold'
-          htmlFor='#number'
-        >
-          R
-        </label>
-        <input
-          className='bg-transparent outline-none focus:outline-none  font-merriweather placeholder:R0 text-[#ed0025] font-bold'
-          type='text'
-          id='number'
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
+    <div className='pt-8 px-6'>
+      <div className='pb-8'>
+        <h3 className='text-center py-4 text-2xl sm:text-4xl lg:text-5xl text-[#ed0025] pt-32 font-merriweather font-semibold'>
+          Are you investing monthly?
+        </h3>
+        <p className='text-gray-700 text-sm whitespace-normal text-justify px-5 md:px-20 lg:px-40 xl:px-60'>
+          You choose if and how much you want to invest monthly (min R1 000) and
+          can{" "}
+          <span className='px-2 font-bold'>
+            increase, decrease, stop and restart
+          </span>{" "}
+          your contributions whenever you want to. No transaction fees and no
+          penalties.
+        </p>
       </div>
-
-      <div className='flex justify-center'>
-        <input
-          className='w-full ss:mx-10 md:mx-32 lg:mx-52 text-[#ed0025]'
-          type='range'
-          value={amount}
-          min='0'
-          step='50'
-          max='5000'
-          onChange={(e) => setAmount(e.target.value)}
-        />
-      </div>
-      <div className='my-5 text-white bg-[#ed0025] text-center cursor-pointer group sm:w-60 sm:ml-[40%]'>
-        <button className='w-full py-2 px-6 text-lg shadow-2xl group-hover:shadow-none text-center'>
-          Continue
-        </button>
-      </div>
+      <Input
+        label='R'
+        min='0'
+        step='50'
+        max='5000'
+        value={amount}
+        setValue={setAmount}
+      />
     </div>
   );
-}
+};
 
-export default Amount
+export default Amount;

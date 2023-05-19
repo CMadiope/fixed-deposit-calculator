@@ -1,28 +1,66 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Amount from "../components/Amount";
+import Carousel, { CarouselItem } from "../components/Motion/Carousel";
+import Increase from "../components/Increase";
+import Lumpsum from "../components/Lumpsum";
+import Years from "../components/Years";
+import Objective from "../components/Objective";
+import Graph from "../components/Graph";
 
 const Calculator = () => {
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(0);
+  const [increase, setIncrease] = useState(0);
+  const [lumpsum, setLumpsum] = useState(0);
+  const [years, setYears] = useState(0);
+  const [investmentObjective, setInvestmentObjective] = useState("");
 
   return (
-    <div className='bg-[#d8d8d8] px-6 h-screen'>
-      <h3 className='text-center text-2xl sm:text-4xl lg:text-5xl text-[#ed0025] pt-32 font-merriweather font-semibold'>
-        Are you investing monthly?
-      </h3>
-      <p className='text-sm sm:text-lg py-4 text-justify text-gray-700 sm:px-20 md:px-24 lg:px-28'>
-        You choose if and how much you want to invest monthly (min R1 000) and
-        can{" "}
-        <span className='px-2 font-bold'>
-          increase, decrease, stop and restart
-        </span>{" "}
-        your contributions whenever you want to. No transaction fees and no
-        penalties.
-      </p>
-      <Amount amount={amount} setAmount={setAmount} />
-      <div className=''>
+    <div className='bg-[#d8d8d8] px-6 min-h-screen '>
+      <Carousel >
+        <CarouselItem>
+          <Amount amount={amount} setAmount={setAmount} />
+        </CarouselItem>
+        <CarouselItem>
+          <Increase increase={increase} setIncrease={setIncrease} />
+        </CarouselItem>
+        <CarouselItem>
+          <Lumpsum lumpsum={lumpsum} setLumpsum={setLumpsum} />
+        </CarouselItem>
+        <CarouselItem>
+          <Years years={years} setYears={setYears} />
+        </CarouselItem>
+        <CarouselItem>
+          <Objective
+            investmentObjective={investmentObjective}
+            setInvestmentObjective={setInvestmentObjective}
+          />
+        </CarouselItem>
+        <CarouselItem>
+          <Graph/>
+        </CarouselItem>
+      </Carousel>
+      <div className='pb-16 grid sm:grid-cols-3 sm:gap-5 md:grid-cols-4'>
         <div className='bg-white flex justify-between items-center py-3 px-4'>
-          <p className="text-gray-700">Monthly amount</p>
+          <p className='text-gray-700'>Monthly amount</p>
           <p className='text-[#ed0025] font-merriweather'>R{amount}</p>
+        </div>
+        <div className='bg-white flex justify-between items-center py-3 px-4'>
+          <p className='text-gray-700'>Yearly increase</p>
+          <p className='text-[#ed0025] font-merriweather'>{increase}%</p>
+        </div>
+        <div className='bg-white flex justify-between items-center py-3 px-4'>
+          <p className='text-gray-700'>Lump sum</p>
+          <p className='text-[#ed0025] font-merriweather'>R{lumpsum}</p>
+        </div>
+        <div className='bg-white flex justify-between items-center py-3 px-4'>
+          <p className='text-gray-700'>Years invested</p>
+          <p className='text-[#ed0025] font-merriweather'>{years}</p>
+        </div>
+        <div className='bg-white flex justify-between items-center py-3 px-4'>
+          <p className='text-gray-700'>Investment objective</p>
+          <p className='text-[#ed0025] font-merriweather text-right text-[14px]'>
+            {investmentObjective}
+          </p>
         </div>
       </div>
     </div>
